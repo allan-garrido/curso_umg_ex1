@@ -1,5 +1,7 @@
 package com.umg.curso.clases;
 
+import java.util.*;
+
 /**
  * Created by ore on 28/06/17.
  */
@@ -8,6 +10,7 @@ public class Ministerio {
     private Deporte[] listado;
     private Especialista especialista;
     private int cantReal;
+    private List<Deportista> deportistas = new ArrayList<>();
 
     public Ministerio(int cantDeportes) {
         listado = new Deporte[10];
@@ -39,6 +42,23 @@ public class Ministerio {
         this.cantReal = cantReal;
     }
 
+    public void adicionarDeportista(Deportista d) {
+        if(d.getEdad()>60)
+            deportistas.add(0,d);
+        else
+            deportistas.add(d);
+    }
+
+    public float promedioEdad() {
+        int suma=0;
+
+        for (Deportista d:deportistas
+             ) {
+            suma+=d.getEdad();
+        }
+
+        return suma/deportistas.size();
+    }
 
     public void adicionarDeporte(Deporte d) throws Exception {
 
